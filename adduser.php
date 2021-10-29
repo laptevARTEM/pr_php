@@ -47,10 +47,10 @@
             <div class="file-field input-field">
                 <div class="btn">
                     <span>Photo</span>
-                    <input type="file" name="photo" id="fileToUpload">
+                    <input type="file" name="photo" id="fileToUpload" accept="image/png, image/gif, image/jpeg image/jpg">
                 </div>
                 <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" name="photo" id="photo" accept="image/png, image/gif, image/jpeg image/jpg">
+                    <input class="file-path validate" type="text">
                 </div>
             </div>
         </div>
