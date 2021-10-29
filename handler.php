@@ -3,8 +3,8 @@ include 'upload.php';
 $flag = false;
 if(!empty($_POST['name']) && !empty($_POST['gender']) && !empty($_POST['email'])){
     $flag = true;
-    $name = $_POST['name'];
-    $email = $_POST['email'];
+    $name = filter_input(INPUT_POST, 'name',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $gender = $_POST['gender'];
     if(!file_exists('database/users.csv')){
         file_put_contents('database/users.csv','');
@@ -35,8 +35,8 @@ if(!empty($_POST['name']) && !empty($_POST['gender']) && !empty($_POST['email'])
     <?php
     if($flag){
         echo "User Added ".$_POST['name']."<br>";
-        echo "Email ".$_POST['name'];
-        echo " Gender ".$_POST['name'];
+        echo "Email ".$_POST['email'];
+        echo " Gender ".$_POST['gender'];
     }else{
         echo "<p style = 'color:red'>Invalid Data</p>";
     }
