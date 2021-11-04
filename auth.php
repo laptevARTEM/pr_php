@@ -1,11 +1,16 @@
 <?php
-const ADMIN_EMAIL = 'admin@admin.com';
-const ADMIN_PASSWORD = '111111';
+require 'db.php';
 session_start();
-if($_POST['email'] === ADMIN_EMAIL && $_POST['password'] === ADMIN_PASSWORD){
-    $_SESSION['auth'] = true;
-    header('Location: adduser.php');
-}else{
-    $_SESSION['auth'] = false;
-    header('Location: login.php');
+$sql = "SELECT * FROM innodb";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        if($_POST['email'] === $row['email'] && $_POST['password'] === $row['password']){
+            $_SESSION['auth'] = true;
+            header('Location: adduser.php');
+        }else{
+            $_SESSION['auth'] = false;
+            header('Location: login.php');
+        }
+    }
 }
