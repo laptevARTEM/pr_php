@@ -1,4 +1,5 @@
 <?php
+require 'db.php';
 include 'upload.php';
 $flag = false;
 if(!empty($_POST['name']) && !empty($_POST['gender']) && !empty($_POST['email'])){
@@ -6,13 +7,12 @@ if(!empty($_POST['name']) && !empty($_POST['gender']) && !empty($_POST['email'])
     $name = filter_input(INPUT_POST, 'name',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $gender = $_POST['gender'];
-    if(!file_exists('database/users.csv')){
-        file_put_contents('database/users.csv','');
+    $sql = "INSERT INTO innodb (email, name, gender, password, path_to_img) VALUES ('$email','$name','$gender', '111111', '$filePath')";
+    echo $sql;
+    $res = mysqli_query($conn, $sql);
+    if($res) {
+        $valid = true;
     }
-
-    $fp = fopen('database/users.csv','a');
-    fwrite($fp,"$name,$email,$gender,$filePath\n");
-    fclose($fp);
 }
 ?>
 <!doctype html>
