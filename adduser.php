@@ -70,6 +70,7 @@ if (isset($_SESSION['auth']) && $_SESSION['auth'] === true){
         Content is restricted, please <a href="login.php">Login</a>
     </span>
     <?php endif;?>
+    <a href="login.php"><input type="submit" class="btn" value="Login page"></a>
 </div>
 </body>
 </html>
